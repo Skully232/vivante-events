@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vivante Events — Bangalore's most energetic event company. Concerts, corporate events, CSR, live shows. Experiences That Move People.">
+  <title>Vivante Events | Experiences That Move People</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            stage: '#0D0D0D',
+            orange: '#FF6B35',
+            gold: '#FFD700',
+            pink: '#E91E8C',
+            muted: '#CCCCCC',
+          },
+          fontFamily: {
+            display: ['"Bebas Neue"', 'Impact', 'sans-serif'],
+            body: ['"DM Sans"', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <header id="navbar" class="sticky top-0 z-[100] bg-[#0D0D0D]/85 backdrop-blur-md border-b border-white/10">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between h-16 md:h-[72px]">
+        <a href="index.html" class="brand-logo shrink-0">
+          <span class="brand-name"><span aria-hidden="true">⚡</span> VIVANTE</span>
+          <span class="brand-sub">Events</span>
+        </a>
+
+        <ul class="hidden lg:flex items-center gap-8">
+          <li><a href="index.html" class="nav-link-active text-sm uppercase tracking-wider">Home</a></li>
+          <li><a href="services.html" class="text-muted hover:text-white text-sm font-medium uppercase tracking-wider transition-colors">Services</a></li>
+          <li><a href="about.html" class="text-muted hover:text-white text-sm font-medium uppercase tracking-wider transition-colors">About</a></li>
+          <li><a href="contact.html" class="text-muted hover:text-white text-sm font-medium uppercase tracking-wider transition-colors">Contact</a></li>
+        </ul>
+
+        <div class="hidden lg:block">
+          <a href="contact.html" class="nav-cta">Get a Quote</a>
+        </div>
+
+        <button id="nav-toggle" type="button" class="lg:hidden text-orange p-2 -mr-2" aria-label="Toggle menu" aria-expanded="false">
+          <svg id="icon-open" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div id="mobile-menu" class="lg:hidden border-t border-white/10">
+        <ul class="py-4 flex flex-col gap-1">
+          <li><a href="index.html" class="block py-3 px-2 text-orange font-semibold uppercase tracking-wider text-sm">Home</a></li>
+          <li><a href="services.html" class="block py-3 px-2 text-muted hover:text-white font-medium uppercase tracking-wider text-sm transition-colors">Services</a></li>
+          <li><a href="about.html" class="block py-3 px-2 text-muted hover:text-white font-medium uppercase tracking-wider text-sm transition-colors">About</a></li>
+          <li><a href="contact.html" class="block py-3 px-2 text-muted hover:text-white font-medium uppercase tracking-wider text-sm transition-colors">Contact</a></li>
+          <li class="pt-2 px-2">
+            <a href="contact.html" class="nav-cta block text-center w-full">Get a Quote</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ========== HERO ========== -->
+    <section class="hero-bg relative min-h-[100svh] flex flex-col items-center justify-center px-4 sm:px-6 pt-20 pb-16 text-center">
+      <div class="max-w-5xl mx-auto w-full">
+        <h1 class="font-display hero-title text-white mb-4 md:mb-6">
+          <span class="hero-word block">WE CREATE</span>
+          <span class="hero-word block text-orange">UNFORGETTABLE</span>
+          <span class="hero-word block">EXPERIENCES</span>
+        </h1>
+
+        <p class="hero-sub text-muted text-sm sm:text-base md:text-lg mb-4 md:mb-6 tracking-wide">
+          Concerts <span class="text-orange mx-1">•</span> Corporate Events <span class="text-orange mx-1">•</span> CSR <span class="text-orange mx-1">•</span> Live Shows
+        </p>
+
+        <div class="hero-meta inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-sm mb-8 md:mb-10">
+          <span>📍</span>
+          <span class="text-white font-medium">Bangalore, India</span>
+        </div>
+
+        <div class="hero-btns flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto">
+          <a href="#gallery" class="btn-hero-primary">Explore Our Work</a>
+          <a href="contact.html" class="btn-hero-outline">Let's Talk</a>
+        </div>
+      </div>
+
+      <a href="#services" class="scroll-arrow absolute bottom-6 left-1/2 -translate-x-1/2 text-orange" aria-label="Scroll down">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+      </a>
+    </section>
+
+    <!-- ========== SERVICES ========== -->
+    <section id="services" class="py-12 md:py-20 px-4 sm:px-6">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="font-display section-title text-center text-white mb-3 reveal">WHAT WE DO</h2>
+        <p class="text-muted text-center text-sm md:text-base mb-10 md:mb-14 reveal">Experiences That Move People</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          <article class="service-card reveal grad-1 rounded-xl p-6 md:p-7 text-white min-h-[220px] flex flex-col">
+            <span class="text-4xl md:text-5xl mb-4" aria-hidden="true">🎤</span>
+            <h3 class="font-display text-2xl md:text-3xl mb-2">LIVE ENTERTAINMENT</h3>
+            <p class="text-white/90 text-sm flex-grow">Concerts, artists &amp; stage productions that electrify every crowd.</p>
+            <a href="services.html" class="mt-4 text-sm font-bold uppercase tracking-wider hover:underline">Learn More →</a>
+          </article>
+
+          <article class="service-card reveal grad-2 rounded-xl p-6 md:p-7 text-white min-h-[220px] flex flex-col">
+            <span class="text-4xl md:text-5xl mb-4" aria-hidden="true">🏢</span>
+            <h3 class="font-display text-2xl md:text-3xl mb-2">CORPORATE EVENTS</h3>
+            <p class="text-white/90 text-sm flex-grow">Launches, conferences &amp; brand activations with premium execution.</p>
+            <a href="services.html" class="mt-4 text-sm font-bold uppercase tracking-wider hover:underline">Learn More →</a>
+          </article>
+
+          <article class="service-card reveal grad-3 rounded-xl p-6 md:p-7 text-white min-h-[220px] flex flex-col">
+            <span class="text-4xl md:text-5xl mb-4" aria-hidden="true">🤝</span>
+            <h3 class="font-display text-2xl md:text-3xl mb-2">CSR EVENTS</h3>
+            <p class="text-white/90 text-sm flex-grow">Purpose-driven experiences that connect brands with communities.</p>
+            <a href="services.html" class="mt-4 text-sm font-bold uppercase tracking-wider hover:underline">Learn More →</a>
+          </article>
+
+          <article class="service-card reveal grad-4 rounded-xl p-6 md:p-7 text-white min-h-[220px] flex flex-col">
+            <span class="text-4xl md:text-5xl mb-4" aria-hidden="true">🎪</span>
+            <h3 class="font-display text-2xl md:text-3xl mb-2">MANPOWER &amp; MORE</h3>
+            <p class="text-white/90 text-sm flex-grow">Crew, staffing &amp; on-ground ops for seamless event delivery.</p>
+            <a href="services.html" class="mt-4 text-sm font-bold uppercase tracking-wider hover:underline">Learn More →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== GALLERY STRIP ========== -->
+    <section id="gallery" class="py-12 md:py-16 px-4 sm:px-6 bg-[#111111]">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="font-display section-title text-white mb-2 reveal">MOMENTS WE'VE CREATED</h2>
+        <p class="text-muted text-sm mb-8 reveal">Swipe to explore →</p>
+
+        <div class="gallery-scroll reveal mb-6" role="region" aria-label="Event photo gallery">
+          <figure class="gallery-item-inline">
+            <div class="gallery-img-wrap">
+              <img src="https://picsum.photos/seed/concert/300/200" alt="Live concert event" width="300" height="200" loading="lazy">
+            </div>
+            <figcaption class="text-sm text-gold mt-2 font-medium">Live Concert</figcaption>
+          </figure>
+          <figure class="gallery-item-inline">
+            <div class="gallery-img-wrap">
+              <img src="https://picsum.photos/seed/party/300/200" alt="Party celebration" width="300" height="200" loading="lazy">
+            </div>
+            <figcaption class="text-sm text-gold mt-2 font-medium">Celebration</figcaption>
+          </figure>
+          <figure class="gallery-item-inline">
+            <div class="gallery-img-wrap">
+              <img src="https://picsum.photos/seed/corporate/300/200" alt="Corporate event" width="300" height="200" loading="lazy">
+            </div>
+            <figcaption class="text-sm text-gold mt-2 font-medium">Corporate Event</figcaption>
+          </figure>
+          <figure class="gallery-item-inline">
+            <div class="gallery-img-wrap">
+              <img src="https://picsum.photos/seed/festival/300/200" alt="Festival event" width="300" height="200" loading="lazy">
+            </div>
+            <figcaption class="text-sm text-gold mt-2 font-medium">Festival</figcaption>
+          </figure>
+          <figure class="gallery-item-inline">
+            <div class="gallery-img-wrap">
+              <img src="https://picsum.photos/seed/team/300/200" alt="Team event" width="300" height="200" loading="lazy">
+            </div>
+            <figcaption class="text-sm text-gold mt-2 font-medium">Team Event</figcaption>
+          </figure>
+          <figure class="gallery-item-inline">
+            <div class="gallery-img-wrap">
+              <img src="https://picsum.photos/seed/celebration/300/200" alt="CSR initiative celebration" width="300" height="200" loading="lazy">
+            </div>
+            <figcaption class="text-sm text-gold mt-2 font-medium">CSR Initiative</figcaption>
+          </figure>
+        </div>
+
+        <p class="reveal text-right">
+          <a href="gallery.html" class="text-muted text-sm hover:text-orange transition-colors tracking-wide">
+            View All Moments →
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== STATS ========== -->
+    <section class="stats-section py-12 md:py-16 px-4 sm:px-6 border-y border-white/5">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6 text-center reveal">
+          <div>
+            <p class="font-display text-5xl sm:text-6xl md:text-7xl text-orange stat-num" data-target="50" data-suffix="+">0</p>
+            <p class="text-white text-xs sm:text-sm uppercase tracking-widest mt-2 font-semibold">Events</p>
+          </div>
+          <div>
+            <p class="font-display text-5xl sm:text-6xl md:text-7xl text-orange stat-num" data-target="3" data-suffix="">0</p>
+            <p class="text-white text-xs sm:text-sm uppercase tracking-widest mt-2 font-semibold">Cities</p>
+          </div>
+          <div>
+            <p class="font-display text-5xl sm:text-6xl md:text-7xl text-orange stat-num" data-target="200" data-suffix="+">0</p>
+            <p class="text-white text-xs sm:text-sm uppercase tracking-widest mt-2 font-semibold">Crew</p>
+          </div>
+          <div>
+            <p class="font-display text-5xl sm:text-6xl md:text-7xl text-orange stat-num" data-target="1000" data-suffix="+">0</p>
+            <p class="text-white text-xs sm:text-sm uppercase tracking-widest mt-2 font-semibold">Guests</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section class="py-12 md:py-20 px-4 sm:px-6">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="font-display section-title text-center text-white mb-10 md:mb-14 reveal">WHAT CLIENTS SAY</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+          <article class="reveal bg-[#161616] border border-white/10 rounded-xl p-6">
+            <div class="flex items-center gap-4 mb-4">
+              <img src="https://picsum.photos/seed/person1/80/80" alt="" class="w-14 h-14 rounded-full object-cover border-2 border-orange" width="56" height="56">
+              <div>
+                <p class="font-semibold text-white">Rajesh K.</p>
+                <p class="text-muted text-xs">VP Marketing, TechCorp India</p>
+              </div>
+            </div>
+            <div class="text-gold text-sm mb-3" aria-label="5 star rating">★★★★★</div>
+            <p class="text-muted text-sm leading-relaxed">"Vivante turned our product launch into a full-blown experience. The energy, the production quality — our guests are still talking about it months later."</p>
+          </article>
+
+          <article class="reveal bg-[#161616] border border-white/10 rounded-xl p-6">
+            <div class="flex items-center gap-4 mb-4">
+              <img src="https://picsum.photos/seed/person2/80/80" alt="" class="w-14 h-14 rounded-full object-cover border-2 border-orange" width="56" height="56">
+              <div>
+                <p class="font-semibold text-white">Priya Menon</p>
+                <p class="text-muted text-xs">CSR Head, GreenFuture Foundation</p>
+              </div>
+            </div>
+            <div class="text-gold text-sm mb-3" aria-label="5 star rating">★★★★★</div>
+            <p class="text-muted text-sm leading-relaxed">"They understood our mission instantly and delivered a community event that felt authentic and impactful. Professional, passionate, and genuinely caring."</p>
+          </article>
+
+          <article class="reveal bg-[#161616] border border-white/10 rounded-xl p-6">
+            <div class="flex items-center gap-4 mb-4">
+              <img src="https://picsum.photos/seed/person3/80/80" alt="" class="w-14 h-14 rounded-full object-cover border-2 border-orange" width="56" height="56">
+              <div>
+                <p class="font-semibold text-white">Arjun &amp; Meera S.</p>
+                <p class="text-muted text-xs">Private Celebration Clients</p>
+              </div>
+            </div>
+            <div class="text-gold text-sm mb-3" aria-label="5 star rating">★★★★★</div>
+            <p class="text-muted text-sm leading-relaxed">"Our anniversary party felt like a mini festival — incredible décor, seamless coordination, and a vibe that had everyone on their feet. Worth every rupee."</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== WHY VIVANTE ========== -->
+    <section class="py-12 md:py-20 px-4 sm:px-6 bg-[#111111]">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="font-display section-title text-center text-white mb-10 md:mb-14 reveal">WHY VIVANTE</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+          <article class="reveal text-center md:text-left">
+            <div class="w-16 h-16 mx-auto md:mx-0 flex items-center justify-center rounded-full bg-orange/20 text-4xl mb-5">🔥</div>
+            <h3 class="font-display text-2xl md:text-3xl text-orange mb-3">ON-GROUND EXPERIENCE</h3>
+            <p class="text-muted text-sm leading-relaxed">200+ trained crew members who've executed events across Bangalore, Mumbai &amp; Hyderabad. We know venues, vendors &amp; crowds.</p>
+          </article>
+          <article class="reveal text-center md:text-left">
+            <div class="w-16 h-16 mx-auto md:mx-0 flex items-center justify-center rounded-full bg-pink/20 text-4xl mb-5">⚡</div>
+            <h3 class="font-display text-2xl md:text-3xl text-pink mb-3">TECH-DRIVEN OPERATIONS</h3>
+            <p class="text-muted text-sm leading-relaxed">Real-time coordination, digital check-ins, AV integration &amp; live production tools that keep your event running like clockwork.</p>
+          </article>
+          <article class="reveal text-center md:text-left">
+            <div class="w-16 h-16 mx-auto md:mx-0 flex items-center justify-center rounded-full bg-gold/20 text-4xl mb-5">🎯</div>
+            <h3 class="font-display text-2xl md:text-3xl text-gold mb-3">END-TO-END EXECUTION</h3>
+            <p class="text-muted text-sm leading-relaxed">From first brief to final applause — concept, planning, production, manpower &amp; teardown. One team, zero stress.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CTA BANNER ========== -->
+    <section class="cta-gradient py-14 md:py-20 px-4 sm:px-6">
+      <div class="max-w-3xl mx-auto text-center reveal">
+        <h2 class="font-display text-4xl sm:text-5xl md:text-6xl text-white mb-4 leading-tight">READY TO CREATE SOMETHING EPIC?</h2>
+        <p class="text-white/90 text-base md:text-lg mb-8">Let's plan your next event together</p>
+        <a href="contact.html" class="btn-cta-white mx-auto">START PLANNING →</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-[#0A0A0A] border-t border-white/10 pt-12 pb-8 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+        <div>
+          <a href="index.html" class="brand-logo inline-block mb-3">
+            <span class="brand-name"><span aria-hidden="true">⚡</span> VIVANTE</span>
+            <span class="brand-sub">Events</span>
+          </a>
+          <p class="text-muted text-sm leading-relaxed">Experiences That Move People.</p>
+        </div>
+        <div>
+          <h4 class="font-display text-xl text-orange mb-4">QUICK LINKS</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="index.html" class="text-muted hover:text-white transition-colors">Home</a></li>
+            <li><a href="services.html" class="text-muted hover:text-white transition-colors">Services</a></li>
+            <li><a href="about.html" class="text-muted hover:text-white transition-colors">About</a></li>
+            <li><a href="contact.html" class="text-muted hover:text-white transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display text-xl text-orange mb-4">CONTACT</h4>
+          <ul class="space-y-2 text-sm text-muted">
+            <li><a href="mailto:hello@vivanteevents.com" class="hover:text-white transition-colors">hello@vivanteevents.com</a></li>
+            <li><a href="tel:+919XXXXXXXXX" class="hover:text-white transition-colors">+91 9XXXXXXXXX</a></li>
+            <li>Bangalore, India</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-display text-xl text-orange mb-4">FOLLOW US</h4>
+          <div class="flex gap-4">
+            <a href="https://instagram.com/vivanteevents" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-orange hover:text-[#0D0D0D] transition-colors" aria-label="Instagram">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://linkedin.com/company/vivanteevents" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-orange hover:text-[#0D0D0D] transition-colors" aria-label="LinkedIn">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://wa.me/919XXXXXXXXXX" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-[#25D366] transition-colors" aria-label="WhatsApp">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+            <a href="https://youtube.com/@vivanteevents" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-orange hover:text-[#0D0D0D] transition-colors" aria-label="YouTube">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-white/10 pt-6 text-center text-muted text-xs sm:text-sm">
+        <p>&copy; 2026 Vivante Events, Bangalore. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== WHATSAPP ========== -->
+  <div class="whatsapp-wrap">
+    <span class="whatsapp-tooltip">Chat with us!</span>
+    <span class="whatsapp-pulse" aria-hidden="true"></span>
+    <a href="https://wa.me/919XXXXXXXXXX" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+      <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    </a>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
