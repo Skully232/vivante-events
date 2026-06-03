@@ -109,7 +109,7 @@
     });
   }
 
-  var statsSection = document.querySelector('.stats-section');
+  var statsSection = document.querySelector('.stats-panel') || document.querySelector('.stats-section');
   if (statsSection && 'IntersectionObserver' in window) {
     var statsObs = new IntersectionObserver(
       function (entries) {
