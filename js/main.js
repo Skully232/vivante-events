@@ -185,7 +185,7 @@ function splitH2(h2) {
 /* ================================================================
    ODOMETER — build DOM + fire animation
    ================================================================ */
-var DIGIT_H = 60; // px — hardcoded, never measure DOM
+var DIGIT_H = 56; // px — hardcoded, never measure DOM
 
 function buildOdometer(el) {
   if (el.dataset.odoBuilt) return;
@@ -220,6 +220,7 @@ function fireOdometer(el) {
     var targetY    = -(finalDigit * DIGIT_H);
 
     setTimeout(function () {
+      console.log('Firing odometer, finalDigit:', finalDigit, 'targetY:', targetY);
       reel.classList.add('rolling');
       reel.style.transform = 'translateY(' + targetY + 'px)';
     }, idx * 150);
@@ -227,7 +228,7 @@ function fireOdometer(el) {
 }
 
 /* ================================================================
-   GALLERY GLOBE (gallery.html only)
+   GALLERY GLOBE (gallery.html only) — TRUE 3D SPHERE
    ================================================================ */
 var GALLERY_DATA = [
   { src: 'https://picsum.photos/seed/artist1/400/600',    title: 'DSP India Tour',       sub: 'Artist Moments', category: 'artist' },
@@ -239,6 +240,18 @@ var GALLERY_DATA = [
   { src: 'https://picsum.photos/seed/event1/800/500',     title: 'Grand Stage Night',     sub: 'Live Events',    category: 'live' },
   { src: 'https://picsum.photos/seed/celebration/800/500',title: 'CSR Initiative',        sub: 'CSR',            category: 'csr' },
 ];
+
+function fibonacciSphere(n, total) {
+  var goldenAngle = Math.PI * (3 - Math.sqrt(5));
+  var y = 1 - (n / (total - 1)) * 2;
+  var radius = Math.sqrt(1 - y * y);
+  var theta = goldenAngle * n;
+  return {
+    x: Math.cos(theta) * radius,
+    y: y,
+    z: Math.sin(theta) * radius
+  };
+}
 
 function initGalleryGlobe() {
   var scene   = document.getElementById('globe-scene');
@@ -257,50 +270,36 @@ function initGalleryGlobe() {
   var currentFilter = 'all';
   var activeIndex   = 0;
   var autoTimer     = null;
-  var isHovering    = false;
+  var isDragging    = false;
+  var dragStartX    = 0;
+  var dragStartY    = 0;
+  var sphereRotX    = 0;
+  var sphereRotY    = 0;
+  var autoRotateY   = 0;
+
+  var SPHERE_RADIUS = 280;
 
   function getFiltered() {
     if (currentFilter === 'all') return GALLERY_DATA;
     return GALLERY_DATA.filter(function (d) { return d.category === currentFilter; });
   }
 
-  // Positions on the globe (8 slots = 360/8 = 45deg apart)
-  // translateZ(300px) puts each card on globe surface
-  var SLOT_ANGLES = [0, 45, 90, 135, 180, 225, 270, 315];
-  var Z_RADIUS = 300;
-
-  function getCardStyle(slotAngle) {
-    var rad = slotAngle * Math.PI / 180;
-    var absAngle = ((slotAngle % 360) + 360) % 360;
-    // Opacity and scale based on how "front-facing" the card is
-    // 0deg = front, 180deg = back
-    var frontness = Math.cos(rad); // 1 at front, -1 at back
-    var opacity = Math.max(0.1, (frontness + 1) / 2 * 0.9 + 0.1);
-    var scale   = Math.max(0.4,  (frontness + 1) / 2 * 0.6 + 0.4);
-    return {
-      transform: 'rotateY(' + slotAngle + 'deg) translateZ(' + Z_RADIUS + 'px) scale(' + scale.toFixed(2) + ')',
-      opacity: opacity.toFixed(2),
-      zIndex: Math.round(frontness * 10 + 10),
-    };
-  }
-
   function buildGlobeCards(data) {
     if (!ring) return;
     ring.innerHTML = '';
 
-    var total = Math.min(data.length, 8);
+    var total = data.length;
     for (var i = 0; i < total; i++) {
       var item  = data[i];
-      var angle = (i / total) * 360; // evenly distributed
-      var style = getCardStyle(angle);
+      var pos   = fibonacciSphere(i, total);
+      
+      var rotY = Math.atan2(pos.x, pos.z) * 180 / Math.PI;
+      var rotX = Math.asin(-pos.y) * 180 / Math.PI;
 
       var card = document.createElement('div');
       card.className = 'globe-card';
       card.setAttribute('data-index', i);
-      card.setAttribute('data-base-angle', angle.toFixed(2));
-      card.style.transform = style.transform;
-      card.style.opacity   = style.opacity;
-      card.style.zIndex    = style.zIndex;
+      card.style.transform = 'rotateY(' + rotY + 'deg) rotateX(' + rotX + 'deg) translateZ(' + SPHERE_RADIUS + 'px)';
 
       card.innerHTML = '<img src="' + item.src + '" alt="' + item.title + '" loading="lazy">' +
                        '<div class="globe-card-overlay"></div>';
@@ -316,8 +315,7 @@ function initGalleryGlobe() {
   function buildDots(data) {
     if (!dotsWrap) return;
     dotsWrap.innerHTML = '';
-    var total = Math.min(data.length, 8);
-    for (var i = 0; i < total; i++) {
+    for (var i = 0; i < data.length; i++) {
       var dot = document.createElement('button');
       dot.className = 'globe-dot' + (i === activeIndex ? ' active' : '');
       dot.setAttribute('aria-label', 'Photo ' + (i + 1));
@@ -356,81 +354,101 @@ function initGalleryGlobe() {
     });
   }
 
-  // Stop auto-spin, rotate so active card faces front
-  function applyRotation(data) {
-    if (!ring) return;
-    var total = Math.min(data.length, 8);
-    // Each card's base angle; we want activeIndex card at 0deg (front)
-    var offset = -(activeIndex / total) * 360;
-
-    // Temporarily remove auto-spin to apply rotation
-    ring.classList.remove('auto-spin');
-    ring.style.transform = 'rotateY(' + offset + 'deg)';
-    ring.style.transition = 'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)';
-
-    updateCaption(data);
-    updateDots();
-
-    // Resume auto-spin after user interaction timeout
-    clearTimeout(autoTimer);
-    autoTimer = setTimeout(function () {
-      ring.style.transition = '';
-      ring.style.transform  = '';
-      ring.classList.add('auto-spin');
-    }, 4000);
-  }
-
   function goTo(idx) {
     var data = getFiltered();
     if (!data.length) return;
     activeIndex = ((idx % data.length) + data.length) % data.length;
-    applyRotation(data);
-  }
-
-  function next() { goTo(activeIndex + 1); }
-  function prev() { goTo(activeIndex - 1); }
-
-  function startAutoSpin() {
-    if (!ring) return;
-    ring.classList.add('auto-spin');
-  }
-
-  function init() {
-    activeIndex = 0;
-    var data = getFiltered();
-    buildGlobeCards(data);
-    buildDots(data);
-    buildMobile(data);
     updateCaption(data);
     updateDots();
-    startAutoSpin();
+    clearTimeout(autoTimer);
+    autoTimer = setTimeout(function () {
+      autoRotateY = 0;
+    }, 2000);
   }
 
-  // Pause on hover
+  function next() { 
+    var data = getFiltered();
+    goTo((activeIndex + 1) % data.length); 
+  }
+  function prev() { 
+    var data = getFiltered();
+    goTo((activeIndex - 1 + data.length) % data.length); 
+  }
+
+  // Drag interaction
   if (scene) {
-    scene.addEventListener('mouseenter', function () {
-      isHovering = true;
-      if (ring) ring.classList.add('paused');
+    scene.addEventListener('mousedown', function (e) {
+      isDragging = true;
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+      clearTimeout(autoTimer);
     });
-    scene.addEventListener('mouseleave', function () {
-      isHovering = false;
-      if (ring) ring.classList.remove('paused');
+
+    document.addEventListener('mousemove', function (e) {
+      if (!isDragging || !ring) return;
+      var deltaX = e.clientX - dragStartX;
+      var deltaY = e.clientY - dragStartY;
+      
+      sphereRotY += deltaX * 0.4;
+      sphereRotX -= deltaY * 0.4;
+      
+      if (sphereRotX > 60) sphereRotX = 60;
+      if (sphereRotX < -60) sphereRotX = -60;
+      
+      ring.style.transform = 'rotateY(' + sphereRotY + 'deg) rotateX(' + sphereRotX + 'deg)';
+      
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+    });
+
+    document.addEventListener('mouseup', function () {
+      if (isDragging) {
+        isDragging = false;
+        clearTimeout(autoTimer);
+        autoTimer = setTimeout(function () {
+          autoRotateY = 0;
+        }, 2000);
+      }
+    });
+
+    scene.addEventListener('touchstart', function (e) {
+      isDragging = true;
+      dragStartX = e.touches[0].clientX;
+      dragStartY = e.touches[0].clientY;
+      clearTimeout(autoTimer);
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function (e) {
+      if (!isDragging || !ring) return;
+      var deltaX = e.touches[0].clientX - dragStartX;
+      var deltaY = e.touches[0].clientY - dragStartY;
+      
+      sphereRotY += deltaX * 0.4;
+      sphereRotX -= deltaY * 0.4;
+      
+      if (sphereRotX > 60) sphereRotX = 60;
+      if (sphereRotX < -60) sphereRotX = -60;
+      
+      ring.style.transform = 'rotateY(' + sphereRotY + 'deg) rotateX(' + sphereRotX + 'deg)';
+      
+      dragStartX = e.touches[0].clientX;
+      dragStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', function () {
+      if (isDragging) {
+        isDragging = false;
+        clearTimeout(autoTimer);
+        autoTimer = setTimeout(function () {
+          autoRotateY = 0;
+        }, 2000);
+      }
     });
   }
 
   // Arrow nav
   if (prevBtn) prevBtn.addEventListener('click', function () { prev(); });
   if (nextBtn) nextBtn.addEventListener('click', function () { next(); });
-
-  // Touch swipe on scene
-  var touchStartX = 0;
-  if (scene) {
-    scene.addEventListener('touchstart', function (e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    scene.addEventListener('touchend', function (e) {
-      var diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) { diff > 0 ? next() : prev(); }
-    }, { passive: true });
-  }
 
   // Keyboard
   document.addEventListener('keydown', function (e) {
@@ -447,11 +465,38 @@ function initGalleryGlobe() {
       btn.setAttribute('aria-pressed', 'true');
       currentFilter = btn.getAttribute('data-filter');
       activeIndex   = 0;
-      init();
+      sphereRotX    = 0;
+      sphereRotY    = 0;
+      autoRotateY   = 0;
+      var data = getFiltered();
+      buildGlobeCards(data);
+      buildDots(data);
+      buildMobile(data);
+      updateCaption(data);
+      updateDots();
     });
   });
 
-  init();
+  // Auto-rotate animation loop
+  var rafId = null;
+  function animateAutoRotate() {
+    if (!isDragging) {
+      autoRotateY += 0.15;
+    }
+    if (ring) {
+      ring.style.transform = 'rotateY(' + (sphereRotY + autoRotateY) + 'deg) rotateX(' + sphereRotX + 'deg)';
+    }
+    rafId = requestAnimationFrame(animateAutoRotate);
+  }
+  rafId = requestAnimationFrame(animateAutoRotate);
+
+  // Initial build
+  var data = getFiltered();
+  buildGlobeCards(data);
+  buildDots(data);
+  buildMobile(data);
+  updateCaption(data);
+  updateDots();
 }
 
 /* ================================================================
