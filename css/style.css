@@ -722,37 +722,37 @@ ul { list-style: none; }
    STATS / ODOMETER
    ================================================================ */
 .stats-panel {
-  position: relative;
-  z-index: 4;
-  margin-top: -30px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 3rem 2rem;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  padding: 2rem 1rem;
+  margin: 1rem;
+  clip-path: none;
+  overflow: visible;
 }
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+  gap: 1.5rem 1rem;
   text-align: center;
 }
 @media (min-width: 1024px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
 
 /* Odometer */
 .odometer-stat {
-  display: inline-flex;
-  align-items: flex-start;
   font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-size: clamp(1.8rem, 10vw, 4rem);
   line-height: 1;
   color: var(--accent);
+  display: inline-flex;
+  align-items: flex-start;
 }
 .odometer-digit-slot {
   position: relative;
   overflow: hidden;
   height: 1em;
   width: 0.6em;
+  min-width: 0.5em;
 }
 .odometer-digit-reel {
   display: flex;
@@ -1350,23 +1350,25 @@ h2.words-revealed .word-reveal-inner { transform: translateY(0); }
 /* Mobile flat carousel */
 .mobile-carousel {
   display: none;
+  flex: 1;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   gap: 1rem;
-  padding: 0 1rem 1rem;
+  padding: 1rem;
 }
 .mobile-carousel::-webkit-scrollbar { display: none; }
 .mobile-carousel-item {
-  flex: 0 0 280px;
-  scroll-snap-align: center;
+  flex: 0 0 85vw;
+  height: 280px;
+  scroll-snap-align: start;
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--border);
   position: relative;
 }
-.mobile-carousel-item img { width: 100%; height: 320px; object-fit: cover; display: block; }
+.mobile-carousel-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .mobile-carousel-caption {
   position: absolute;
   bottom: 0; left: 0; right: 0;
@@ -1378,9 +1380,22 @@ h2.words-revealed .word-reveal-inner { transform: translateY(0); }
   color: var(--text);
 }
 
-@media (max-width: 767px) {
-  .globe-scene, .globe-nav, .globe-caption { display: none; }
-  .mobile-carousel { display: flex; }
+/* Desktop only — globe */
+.globe-scene,
+.globe-nav,
+.globe-caption { display: none; }
+
+@media (min-width: 768px) {
+  .globe-scene { display: flex; }
+  .globe-nav { display: flex; }
+  .globe-caption { display: block; }
+}
+
+/* Mobile only — carousel */
+.mobile-carousel { display: flex; }
+
+@media (min-width: 768px) {
+  .mobile-carousel { display: none; }
 }
 
 .gallery-bottom-cta { text-align: center; padding: 3rem 1rem 1rem; }
