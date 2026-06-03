@@ -185,7 +185,15 @@ function splitH2(h2) {
 /* ================================================================
    ODOMETER — build DOM + fire animation
    ================================================================ */
-var DIGIT_H = 56; // px — hardcoded, never measure DOM
+var DIGIT_H = 0;
+
+function getDigitH() {
+  if (DIGIT_H > 0) return DIGIT_H;
+  var test = document.querySelector('.odometer-digit-char');
+  if (test) { DIGIT_H = test.offsetHeight || 28; }
+  else { DIGIT_H = 28; }
+  return DIGIT_H;
+}
 
 function buildOdometer(el) {
   if (el.dataset.odoBuilt) return;
@@ -217,7 +225,7 @@ function fireOdometer(el) {
   el.querySelectorAll('.odometer-digit-reel').forEach(function (reel) {
     var finalDigit = parseInt(reel.getAttribute('data-final'), 10);
     var idx        = parseInt(reel.getAttribute('data-idx'), 10);
-    var targetY    = -(finalDigit * DIGIT_H);
+    var targetY    = -(finalDigit * getDigitH());
 
     setTimeout(function () {
       console.log('Firing odometer, finalDigit:', finalDigit, 'targetY:', targetY);
@@ -276,8 +284,30 @@ function initGalleryGlobe() {
   var sphereRotX    = 0;
   var sphereRotY    = 0;
   var autoRotateY   = 0;
+  var touchActive   = false;
 
   var SPHERE_RADIUS = 280;
+
+  // Touch handlers for globe pause/resume
+  document.addEventListener('touchstart', function() {
+    if (!scene) return;
+    touchActive = true;
+    if (ring) {
+      ring.style.animationPlayState = 'paused';
+      ring.classList.add('paused');
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchend', function() {
+    if (!scene) return;
+    touchActive = false;
+    setTimeout(function() {
+      if (!touchActive && ring) {
+        ring.style.animationPlayState = 'running';
+        ring.classList.remove('paused');
+      }
+    }, 3000);
+  }, { passive: true });
 
   function getFiltered() {
     if (currentFilter === 'all') return GALLERY_DATA;
