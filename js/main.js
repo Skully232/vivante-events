@@ -239,14 +239,30 @@ function fireOdometer(el) {
    GALLERY GLOBE (gallery.html only) — TRUE 3D SPHERE
    ================================================================ */
 var GALLERY_DATA = [
-  { src: 'https://picsum.photos/seed/artist1/400/600',    title: 'DSP India Tour',       sub: 'Artist Moments', category: 'artist' },
-  { src: 'https://picsum.photos/seed/crowd1/800/500',     title: 'Live Show',             sub: 'Live Events',    category: 'live' },
-  { src: 'https://picsum.photos/seed/artist2/400/600',    title: 'Hybe India Auditions',  sub: 'Artist Moments', category: 'artist' },
-  { src: 'https://picsum.photos/seed/stage1/800/500',     title: 'Splash n Play',         sub: 'Live Events',    category: 'live' },
-  { src: 'https://picsum.photos/seed/portrait1/400/600',  title: 'Artist Meet',           sub: 'Artist Moments', category: 'artist' },
-  { src: 'https://picsum.photos/seed/corporate1/800/500', title: 'Corporate Summit',      sub: 'Corporate',      category: 'corporate' },
-  { src: 'https://picsum.photos/seed/event1/800/500',     title: 'Grand Stage Night',     sub: 'Live Events',    category: 'live' },
-  { src: 'https://picsum.photos/seed/celebration/800/500',title: 'CSR Initiative',        sub: 'CSR',            category: 'csr' },
+  { src:'https://picsum.photos/seed/concert1/800/500',
+    caption:'Live Concert', event:'Bangalore Live 2024',
+    category:'live', orientation:'landscape' },
+  { src:'https://picsum.photos/seed/artist1/400/600',
+    caption:'Artist Meet', event:'DSP India Tour',
+    category:'artist', orientation:'portrait' },
+  { src:'https://picsum.photos/seed/corp1/800/500',
+    caption:'Corporate Event', event:'Tech Summit',
+    category:'corporate', orientation:'landscape' },
+  { src:'https://picsum.photos/seed/csr1/400/600',
+    caption:'CSR Initiative', event:'Green Drive',
+    category:'csr', orientation:'portrait' },
+  { src:'https://picsum.photos/seed/stage2/800/500',
+    caption:'Live Show', event:'Hybe India Auditions',
+    category:'live', orientation:'landscape' },
+  { src:'https://picsum.photos/seed/celeb1/400/600',
+    caption:'Artist Moment', event:'Meet and Greet',
+    category:'artist', orientation:'portrait' },
+  { src:'https://picsum.photos/seed/event2/800/500',
+    caption:'Social Event', event:'Splash n Play',
+    category:'corporate', orientation:'landscape' },
+  { src:'https://picsum.photos/seed/team1/400/600',
+    caption:'Team Moment', event:'CSR Drive',
+    category:'csr', orientation:'portrait' },
 ];
 
 function fibonacciSphere(n, total) {
@@ -259,6 +275,12 @@ function fibonacciSphere(n, total) {
     y: y,
     z: Math.sin(theta) * radius
   };
+}
+
+function calcRadius(count) {
+  var base = 260;
+  var extra = Math.max(0, count - 8) * 14;
+  return Math.min(base + extra, 550);
 }
 
 function initGalleryGlobe() {
@@ -285,28 +307,17 @@ function initGalleryGlobe() {
   var sphereRotY    = 0;
   var autoRotateY   = 0;
   var touchActive   = false;
+  var autoRotate    = true;
 
-  var SPHERE_RADIUS = 280;
+  var SPHERE_RADIUS = calcRadius(GALLERY_DATA.length);
 
   // Touch handlers for globe pause/resume
-  document.addEventListener('touchstart', function() {
-    if (!scene) return;
-    touchActive = true;
-    if (ring) {
-      ring.style.animationPlayState = 'paused';
-      ring.classList.add('paused');
-    }
+  scene.addEventListener('touchstart', function() {
+    autoRotate = false;
   }, { passive: true });
 
-  document.addEventListener('touchend', function() {
-    if (!scene) return;
-    touchActive = false;
-    setTimeout(function() {
-      if (!touchActive && ring) {
-        ring.style.animationPlayState = 'running';
-        ring.classList.remove('paused');
-      }
-    }, 3000);
+  scene.addEventListener('touchend', function() {
+    setTimeout(function() { autoRotate = true; }, 2500);
   }, { passive: true });
 
   function getFiltered() {
@@ -319,6 +330,8 @@ function initGalleryGlobe() {
     ring.innerHTML = '';
 
     var total = data.length;
+    var sphereR = calcRadius(total);
+
     for (var i = 0; i < total; i++) {
       var item  = data[i];
       var pos   = fibonacciSphere(i, total);
@@ -329,9 +342,16 @@ function initGalleryGlobe() {
       var card = document.createElement('div');
       card.className = 'globe-card';
       card.setAttribute('data-index', i);
-      card.style.transform = 'rotateY(' + rotY + 'deg) rotateX(' + rotX + 'deg) translateZ(' + SPHERE_RADIUS + 'px)';
 
-      card.innerHTML = '<img src="' + item.src + '" alt="' + item.title + '" loading="lazy">' +
+      var isPortrait = item.orientation === 'portrait';
+      card.style.width  = isPortrait ? '160px' : '220px';
+      card.style.height = isPortrait ? '220px' : '155px';
+      card.style.borderRadius = '10px';
+      card.style.overflow = 'hidden';
+
+      card.style.transform = 'rotateY(' + rotY + 'deg) rotateX(' + rotX + 'deg) translateZ(' + sphereR + 'px)';
+
+      card.innerHTML = '<img src="' + item.src + '" alt="' + item.caption + '" loading="lazy">' +
                        '<div class="globe-card-overlay"></div>';
 
       (function(idx) {
@@ -356,15 +376,19 @@ function initGalleryGlobe() {
     }
   }
 
-  function buildMobile(data) {
+  function buildMobileCarousel(data) {
     if (!mobileCarousel) return;
     mobileCarousel.innerHTML = '';
-    data.forEach(function (item) {
-      var div = document.createElement('div');
-      div.className = 'mobile-carousel-item';
-      div.innerHTML = '<img src="' + item.src + '" alt="' + item.title + '" loading="lazy">' +
-                      '<div class="mobile-carousel-caption">' + item.title + '</div>';
-      mobileCarousel.appendChild(div);
+    data.forEach(function(item) {
+      var card = document.createElement('div');
+      card.className = 'mc-card ' + item.orientation;
+      card.setAttribute('data-category', item.category);
+      card.innerHTML =
+        '<img src="' + item.src + '" alt="' + 
+        item.caption + '" loading="lazy">' +
+        '<div class="mc-caption">' + item.caption + 
+        ' — ' + item.event + '</div>';
+      mobileCarousel.appendChild(card);
     });
   }
 
@@ -372,8 +396,8 @@ function initGalleryGlobe() {
     if (!captTitle || !captSub) return;
     var item = data[activeIndex];
     if (item) {
-      captTitle.textContent = item.title;
-      captSub.textContent   = item.sub;
+      captTitle.textContent = item.caption;
+      captSub.textContent   = item.event;
     }
   }
 
@@ -501,7 +525,7 @@ function initGalleryGlobe() {
       var data = getFiltered();
       buildGlobeCards(data);
       buildDots(data);
-      buildMobile(data);
+      buildMobileCarousel(data);
       updateCaption(data);
       updateDots();
     });
@@ -510,7 +534,7 @@ function initGalleryGlobe() {
   // Auto-rotate animation loop
   var rafId = null;
   function animateAutoRotate() {
-    if (!isDragging) {
+    if (!isDragging && autoRotate) {
       autoRotateY += 0.15;
     }
     if (ring) {
@@ -524,7 +548,7 @@ function initGalleryGlobe() {
   var data = getFiltered();
   buildGlobeCards(data);
   buildDots(data);
-  buildMobile(data);
+  buildMobileCarousel(data);
   updateCaption(data);
   updateDots();
 }
