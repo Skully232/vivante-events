@@ -1348,7 +1348,7 @@ h2.words-revealed .word-reveal-inner { transform: translateY(0); }
 .globe-dot.active { background: var(--accent); transform: scale(1.4); }
 
 /* Mobile flat carousel */
-.mobile-carousel {
+#mobile-carousel {
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
@@ -1360,10 +1360,10 @@ h2.words-revealed .word-reveal-inner { transform: translateY(0); }
   box-sizing: border-box;
   scrollbar-width: none;
 }
-.mobile-carousel::-webkit-scrollbar { display: none; }
+#mobile-carousel::-webkit-scrollbar { display: none; }
 
 @media (min-width: 768px) {
-  .mobile-carousel { display: none; }
+  #mobile-carousel { display: none !important; }
 }
 
 .mc-card {
@@ -1432,7 +1432,7 @@ h2.words-revealed .word-reveal-inner { transform: translateY(0); }
 }
 
 @media (min-width: 768px) {
-  #globe-scene { display: flex; }
+  #globe-scene { display: block; }
   #globe-caption { display: block; }
   .globe-nav { display: flex; }
 }

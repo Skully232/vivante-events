@@ -239,30 +239,30 @@ function fireOdometer(el) {
    GALLERY GLOBE (gallery.html only) — TRUE 3D SPHERE
    ================================================================ */
 var GALLERY_DATA = [
-  { src:'https://picsum.photos/seed/concert1/800/500',
-    caption:'Live Concert', event:'Bangalore Live 2024',
-    category:'live', orientation:'landscape' },
   { src:'https://picsum.photos/seed/artist1/400/600',
-    caption:'Artist Meet', event:'DSP India Tour',
+    title:'DSP India Tour', sub:'Artist Moments',
     category:'artist', orientation:'portrait' },
-  { src:'https://picsum.photos/seed/corp1/800/500',
-    caption:'Corporate Event', event:'Tech Summit',
-    category:'corporate', orientation:'landscape' },
-  { src:'https://picsum.photos/seed/csr1/400/600',
-    caption:'CSR Initiative', event:'Green Drive',
-    category:'csr', orientation:'portrait' },
-  { src:'https://picsum.photos/seed/stage2/800/500',
-    caption:'Live Show', event:'Hybe India Auditions',
+  { src:'https://picsum.photos/seed/crowd1/800/500',
+    title:'Live Show', sub:'Live Events',
     category:'live', orientation:'landscape' },
-  { src:'https://picsum.photos/seed/celeb1/400/600',
-    caption:'Artist Moment', event:'Meet and Greet',
+  { src:'https://picsum.photos/seed/artist2/400/600',
+    title:'Hybe India Auditions', sub:'Artist Moments',
     category:'artist', orientation:'portrait' },
-  { src:'https://picsum.photos/seed/event2/800/500',
-    caption:'Social Event', event:'Splash n Play',
+  { src:'https://picsum.photos/seed/stage1/800/500',
+    title:'Splash n Play', sub:'Live Events',
+    category:'live', orientation:'landscape' },
+  { src:'https://picsum.photos/seed/portrait1/400/600',
+    title:'Artist Meet', sub:'Artist Moments',
+    category:'artist', orientation:'portrait' },
+  { src:'https://picsum.photos/seed/corporate1/800/500',
+    title:'Corporate Summit', sub:'Corporate',
     category:'corporate', orientation:'landscape' },
-  { src:'https://picsum.photos/seed/team1/400/600',
-    caption:'Team Moment', event:'CSR Drive',
-    category:'csr', orientation:'portrait' },
+  { src:'https://picsum.photos/seed/event1/800/500',
+    title:'Grand Stage Night', sub:'Live Events',
+    category:'live', orientation:'landscape' },
+  { src:'https://picsum.photos/seed/celebration/800/500',
+    title:'CSR Initiative', sub:'CSR',
+    category:'csr', orientation:'landscape' },
 ];
 
 function fibonacciSphere(n, total) {
@@ -330,7 +330,8 @@ function initGalleryGlobe() {
     ring.innerHTML = '';
 
     var total = data.length;
-    var sphereR = calcRadius(total);
+    var Z_RADIUS = Math.min(260 + Math.max(0, total - 8) * 14, 520);
+    var sphereR = Z_RADIUS;
 
     for (var i = 0; i < total; i++) {
       var item  = data[i];
@@ -348,10 +349,11 @@ function initGalleryGlobe() {
       card.style.height = isPortrait ? '220px' : '155px';
       card.style.borderRadius = '10px';
       card.style.overflow = 'hidden';
+      card.style.position = 'absolute';
 
       card.style.transform = 'rotateY(' + rotY + 'deg) rotateX(' + rotX + 'deg) translateZ(' + sphereR + 'px)';
 
-      card.innerHTML = '<img src="' + item.src + '" alt="' + item.caption + '" loading="lazy">' +
+      card.innerHTML = '<img src="' + item.src + '" alt="' + item.title + '" loading="lazy">' +
                        '<div class="globe-card-overlay"></div>';
 
       (function(idx) {
@@ -376,19 +378,47 @@ function initGalleryGlobe() {
     }
   }
 
-  function buildMobileCarousel(data) {
-    if (!mobileCarousel) return;
-    mobileCarousel.innerHTML = '';
+  function buildMobile(data) {
+    var mc = document.getElementById('mobile-carousel');
+    if (!mc) return;
+    mc.innerHTML = '';
     data.forEach(function(item) {
       var card = document.createElement('div');
-      card.className = 'mc-card ' + item.orientation;
-      card.setAttribute('data-category', item.category);
-      card.innerHTML =
-        '<img src="' + item.src + '" alt="' + 
-        item.caption + '" loading="lazy">' +
-        '<div class="mc-caption">' + item.caption + 
-        ' — ' + item.event + '</div>';
-      mobileCarousel.appendChild(card);
+      var isPortrait = item.orientation === 'portrait';
+      card.className = 'mobile-carousel-item';
+      card.style.flexShrink = '0';
+      card.style.scrollSnapAlign = 'center';
+      card.style.borderRadius = '12px';
+      card.style.overflow = 'hidden';
+      card.style.position = 'relative';
+      card.style.background = '#1a1a1a';
+      if (isPortrait) {
+        card.style.width = '58vw';
+        card.style.maxWidth = '240px';
+        card.style.height = '82vw';
+        card.style.maxHeight = '340px';
+      } else {
+        card.style.width = '78vw';
+        card.style.maxWidth = '340px';
+        card.style.height = '52vw';
+        card.style.maxHeight = '220px';
+      }
+      var img = document.createElement('img');
+      img.src = item.src;
+      img.alt = item.title;
+      img.loading = 'lazy';
+      img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+      var cap = document.createElement('div');
+      cap.textContent = item.title;
+      cap.style.cssText =
+        'position:absolute;bottom:0;left:0;right:0;' +
+        'background:linear-gradient(transparent,rgba(0,0,0,0.85));' +
+        'color:#fff;padding:1.5rem 0.75rem 0.75rem;' +
+        'font-family:DM Sans,sans-serif;' +
+        'font-size:clamp(0.7rem,3vw,0.85rem);';
+      card.appendChild(img);
+      card.appendChild(cap);
+      mc.appendChild(card);
     });
   }
 
@@ -396,8 +426,8 @@ function initGalleryGlobe() {
     if (!captTitle || !captSub) return;
     var item = data[activeIndex];
     if (item) {
-      captTitle.textContent = item.caption;
-      captSub.textContent   = item.event;
+      captTitle.textContent = item.title;
+      captSub.textContent   = item.sub;
     }
   }
 
@@ -525,7 +555,7 @@ function initGalleryGlobe() {
       var data = getFiltered();
       buildGlobeCards(data);
       buildDots(data);
-      buildMobileCarousel(data);
+      buildMobile(data);
       updateCaption(data);
       updateDots();
     });
@@ -548,7 +578,7 @@ function initGalleryGlobe() {
   var data = getFiltered();
   buildGlobeCards(data);
   buildDots(data);
-  buildMobileCarousel(data);
+  buildMobile(data);
   updateCaption(data);
   updateDots();
 }
