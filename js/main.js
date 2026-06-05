@@ -586,7 +586,7 @@ function initGalleryGlobe() {
 /* ================================================================
    CONTACT FORM
    ================================================================ */
-var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz3PCWEsQRQxvNprvcCoDb3TSQ2HSUA7EuirWMI-boDEoCClkoSs0BKxJteoaJUvr3F/exec';
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwlPSB56QtiAontICsGYlN4ALNfxNNAXah8y6Dv3qUc5hoBCOOorKJAPBTg-CS2C3Px/exec';
 
 function initContactForm() {
   var form = document.getElementById('contact-form');
