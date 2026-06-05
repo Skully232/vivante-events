@@ -586,98 +586,103 @@ function initGalleryGlobe() {
 /* ================================================================
    CONTACT FORM
    ================================================================ */
-function initContactForm() {
-  var SCRIPT_URL    = 'https://script.google.com/macros/s/AKfycbz3PCWEsQRQxvNprvcCoDb3TSQ2HSUA7EuirWMI-boDEoCClkoSs0BKxJteoaJUvr3F/exec';
-  var RATE_LIMIT_MS = 60000;
-  var RATE_LIMIT_KEY = 'vivante_last_submit';
+var SCRIPT_URL = 'PASTE_YOUR_ACTUAL_DEPLOYED_URL_HERE';
 
-  var form       = document.getElementById('contact-form');
+function initContactForm() {
+  var form = document.getElementById('contact-form');
   if (!form) return;
 
-  var submitBtn    = document.getElementById('submit-btn');
-  var formMessage  = document.getElementById('form-message');
-  var defaultBtnTxt = submitBtn ? submitBtn.textContent : 'SEND ENQUIRY →';
-
-  function showMsg(text, type) {
-    if (!formMessage) return;
-    formMessage.textContent = text;
-    formMessage.className = 'form-message ' + type;
-    formMessage.classList.remove('hidden');
-  }
-  function hideMsg() { if (formMessage) formMessage.classList.add('hidden'); }
-
-  function clearErrors() {
-    form.querySelectorAll('.error').forEach(function (el) { el.classList.remove('error'); });
-  }
-
-  function validate(data) {
-    clearErrors();
-    var ok = true;
-    if (!data.fullName.trim()) { document.getElementById('fullName').classList.add('error'); ok = false; }
-    if (!data.phone.trim())    { document.getElementById('phone').classList.add('error');    ok = false; }
-    if (!data.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-      document.getElementById('email').classList.add('error'); ok = false;
-    }
-    return ok;
-  }
-
-  function isRateLimited() {
-    var last = sessionStorage.getItem(RATE_LIMIT_KEY);
-    return last && (Date.now() - parseInt(last, 10) < RATE_LIMIT_MS);
-  }
-
-  form.addEventListener('submit', function (e) {
+  form.addEventListener('submit', function(e) {
     e.preventDefault();
-    hideMsg();
 
-    var honeypot = document.getElementById('website-hp');
+    // Honeypot check
+    var hp = form.querySelector('input[name="website"]');
+    if (hp && hp.value) return;
+
+    // Consent check
     var consent = document.getElementById('consent');
-    if (honeypot && honeypot.value) return;
-    if (consent && !consent.checked) { showMsg('Please accept the privacy policy to continue.', 'error'); return; }
-
-    if (isRateLimited()) { showMsg('Please wait a moment before submitting again.', 'error'); return; }
-
-    var fd = new FormData(form);
-    var data = {
-      fullName:  fd.get('fullName')  || '',
-      company:   fd.get('company')   || '',
-      phone:     fd.get('phone')     || '',
-      email:     fd.get('email')     || '',
-      eventType: fd.get('eventType') || '',
-      eventDate: fd.get('eventDate') || '',
-      guests:    fd.get('guests')    || '',
-      budget:    fd.get('budget')    || '',
-      message:   fd.get('message')   || '',
-    };
-
-    if (!validate(data)) { showMsg('Please fill in all required fields correctly.', 'error'); return; }
-
-    if (SCRIPT_URL === 'PASTE_YOUR_SCRIPT_URL') {
-      showMsg('Form is not yet connected. Please configure the Google Apps Script URL in js/main.js', 'error');
+    if (consent && !consent.checked) {
+      showFormMsg('error', 
+        'Please accept the privacy policy to continue.');
       return;
     }
 
-    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+    // Rate limit
+    var last = sessionStorage.getItem('ve_last_submit');
+    if (last && Date.now() - parseInt(last) < 60000) {
+      showFormMsg('error', 
+        'Please wait a moment before submitting again.');
+      return;
+    }
 
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) { 
+      btn.disabled = true; 
+      btn.textContent = 'SENDING...'; 
+    }
+
+    // Build form data
+    var data = {
+      fullName: getVal('fullName'),
+      company:  getVal('company'),
+      phone:    getVal('phone'),
+      email:    getVal('email'),
+      eventType: getVal('eventType'),
+      eventDate: getVal('eventDate'),
+      guests:   getVal('guests'),
+      budget:   getVal('budget'),
+      message:  getVal('message'),
+    };
+
+    function getVal(id) {
+      var el = document.getElementById(id);
+      return el ? el.value.trim() : '';
+    }
+
+    // Submit using no-cors (required for Apps Script 
+    // from GitHub Pages)
     fetch(SCRIPT_URL, {
       method: 'POST',
-      mode: 'cors',
+      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     })
-    .then(function (r) { return r.json(); })
-    .then(function (result) {
-      if (result.result === 'success' || result.success === true) {
-        sessionStorage.setItem(RATE_LIMIT_KEY, String(Date.now()));
-        form.reset();
-        showMsg("Thanks! We'll get back within 24hrs", 'success');
-      } else {
-        showMsg('Something went wrong, please WhatsApp us directly', 'error');
-      }
+    .then(function() {
+      // no-cors returns opaque response — 
+      // if we reach here, it was sent
+      sessionStorage.setItem('ve_last_submit', 
+        Date.now().toString());
+      showFormMsg('success',
+        'Thanks! We\'ll get back to you within 24 hours.');
+      form.reset();
     })
-    .catch(function () { showMsg('Something went wrong, please WhatsApp us directly', 'error'); })
-    .finally(function () {
-      if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = defaultBtnTxt; }
+    .catch(function() {
+      showFormMsg('error',
+        'Something went wrong. Please WhatsApp us at ' +
+        '+91 98860 32862');
+    })
+    .finally(function() {
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = 'SEND ENQUIRY →';
+      }
     });
   });
+}
+
+function showFormMsg(type, msg) {
+  var existing = document.getElementById('form-msg');
+  if (existing) existing.remove();
+  var div = document.createElement('div');
+  div.id = 'form-msg';
+  div.textContent = msg;
+  div.style.cssText =
+    'margin-top:1rem;padding:1rem 1.25rem;border-radius:8px;' +
+    'font-family:"DM Sans",sans-serif;font-size:0.95rem;' +
+    (type === 'success'
+      ? 'background:#0a2a0a;color:#4caf50;border:1px solid #4caf50;'
+      : 'background:#2a0a0a;color:#ff6b6b;border:1px solid #ff6b6b;');
+  var form = document.getElementById('contact-form');
+  if (form) form.after(div);
+  setTimeout(function() { div.remove(); }, 6000);
 }

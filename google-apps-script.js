@@ -28,19 +28,21 @@ var NOTIFICATION_EMAIL = 'hello@vivanteevents.com';
  */
 function doPost(e) {
   try {
-    var data = parseRequestData(e);
-
-    if (!data.fullName || !data.phone || !data.email) {
-      return jsonResponse('error', 'Missing required fields.');
+    var data;
+    if (e.postData && e.postData.contents) {
+      data = JSON.parse(e.postData.contents);
+    } else {
+      data = e.parameter || {};
     }
-
+    if (!data.fullName || !data.phone) {
+      return jsonResponse('error', 'Missing fields.');
+    }
     appendToSheet(data);
     sendNotificationEmail(data);
-
-    return jsonResponse('success', 'Enquiry received.');
+    return jsonResponse('success', 'Received.');
   } catch (err) {
-    Logger.log('doPost error: ' + err.toString());
-    return jsonResponse('error', 'Server error. Please try again.');
+    Logger.log(err);
+    return jsonResponse('error', 'Server error.');
   }
 }
 
@@ -138,7 +140,7 @@ function sendNotificationEmail(data) {
 
   var body = [
     'A new enquiry has been submitted via vivanteevents.com',
-  '',
+    '',
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
     'CONTACT DETAILS',
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
@@ -146,7 +148,7 @@ function sendNotificationEmail(data) {
     'Company:  ' + (data.company || '—'),
     'Phone:    ' + (data.phone || '—'),
     'Email:    ' + (data.email || '—'),
-  '',
+    '',
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
     'EVENT DETAILS',
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
@@ -154,18 +156,18 @@ function sendNotificationEmail(data) {
     'Date:     ' + (data.eventDate || '—'),
     'Guests:   ' + (data.guests || '—'),
     'Budget:   ' + (data.budget || '—'),
-  '',
+    '',
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
     'MESSAGE',
     '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
     data.message || '(No message provided)',
-  '',
+    '',
     'Submitted: ' +
-      Utilities.formatDate(
-        new Date(),
-        'Asia/Kolkata',
-        "dd MMM yyyy, HH:mm 'IST'"
-      ),
+    Utilities.formatDate(
+      new Date(),
+      'Asia/Kolkata',
+      "dd MMM yyyy, HH:mm 'IST'"
+    ),
   ].join('\n');
 
   MailApp.sendEmail({
