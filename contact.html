@@ -67,7 +67,7 @@
             <p class="body-text text-sm mb-8">Fill in the details and we'll get back to you fast.</p>
 
             <form id="contact-form" novalidate>
-              <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+              <input type="text" id="website-hp" name="website" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
 
               <div class="form-group">
                 <label for="fullName">Full Name <span class="req">*</span></label>
@@ -130,6 +130,23 @@
               <div class="form-group">
                 <label for="message">Message</label>
                 <textarea id="message" name="message" rows="4" placeholder="Tell us about your event vision, venue, and requirements..."></textarea>
+              </div>
+
+              <div class="form-consent">
+                <label class="consent-label">
+                  <input type="checkbox" id="consent" name="consent" 
+                    required style="width:18px;height:18px;
+                    accent-color:#FF3CAC;margin-right:0.5rem;
+                    flex-shrink:0;cursor:pointer;">
+                  <span style="font-family:'DM Sans',sans-serif;
+                    font-size:0.85rem;color:#AAAAAA;line-height:1.4;">
+                    I agree to my information being used to process 
+                    this enquiry. Read our 
+                    <a href="privacy.html" 
+                      style="color:#FF3CAC;text-decoration:underline;">
+                      Privacy Policy</a>.
+                  </span>
+                </label>
               </div>
 
               <div id="form-message" class="form-message hidden" role="alert"></div>

@@ -587,7 +587,7 @@ function initGalleryGlobe() {
    CONTACT FORM
    ================================================================ */
 function initContactForm() {
-  var SCRIPT_URL    = 'PASTE_YOUR_SCRIPT_URL';
+  var SCRIPT_URL    = 'https://script.google.com/macros/s/AKfycbz3PCWEsQRQxvNprvcCoDb3TSQ2HSUA7EuirWMI-boDEoCClkoSs0BKxJteoaJUvr3F/exec';
   var RATE_LIMIT_MS = 60000;
   var RATE_LIMIT_KEY = 'vivante_last_submit';
 
@@ -630,8 +630,10 @@ function initContactForm() {
     e.preventDefault();
     hideMsg();
 
-    var honeypot = form.querySelector('[name="website"]');
-    if (honeypot && honeypot.value.trim()) return;
+    var honeypot = document.getElementById('website-hp');
+    var consent = document.getElementById('consent');
+    if (honeypot && honeypot.value) return;
+    if (consent && !consent.checked) { showMsg('Please accept the privacy policy to continue.', 'error'); return; }
 
     if (isRateLimited()) { showMsg('Please wait a moment before submitting again.', 'error'); return; }
 
