@@ -586,7 +586,7 @@ function initGalleryGlobe() {
 /* ================================================================
    CONTACT FORM
    ================================================================ */
-var SCRIPT_URL = 'PASTE_YOUR_ACTUAL_DEPLOYED_URL_HERE';
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz3PCWEsQRQxvNprvcCoDb3TSQ2HSUA7EuirWMI-boDEoCClkoSs0BKxJteoaJUvr3F/exec';
 
 function initContactForm() {
   var form = document.getElementById('contact-form');
