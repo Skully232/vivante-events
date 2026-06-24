@@ -1,7 +1,7 @@
 /**
  * Vivante Events — main.js
  * All site-wide JS in one file.
- * initMenu · initCursor · initTextReveal · initOdometer · initScrollReveal · initTopbar
+ * initMenu · initTextReveal · initOdometer · initScrollReveal · initTopbar
  * Contact form · Gallery globe
  */
 
@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   initTopbar();
   initMenu();
-  initCursor();
   initSharedObserver(); // handles: reveal, textReveal, odometer
   initGalleryGlobe();
   initContactForm();
@@ -62,64 +61,6 @@ function initMenu() {
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && isOpen) closeMenu();
-  });
-}
-
-/* ================================================================
-   CUSTOM CURSOR GLOW  (fixed rAF — skips when still)
-   ================================================================ */
-function initCursor() {
-  if (window.matchMedia('(pointer: coarse)').matches) return;
-
-  var dot  = document.getElementById('cursor-dot');
-  var ring = document.getElementById('cursor-ring');
-  if (!dot || !ring) return;
-
-  var mx = window.innerWidth / 2,  my = window.innerHeight / 2;
-  var rx = mx, ry = my;
-  var rafId = null;
-
-  document.addEventListener('mousemove', function (e) {
-    mx = e.clientX;
-    my = e.clientY;
-    dot.style.left = mx + 'px';
-    dot.style.top  = my + 'px';
-    if (!rafId) rafId = requestAnimationFrame(animRing);
-  });
-
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  function animRing() {
-    var dx = mx - rx;
-    var dy = my - ry;
-
-    if (Math.abs(dx) < 0.5 && Math.abs(dy) < 0.5) {
-      // cursor is still — stop loop
-      rafId = null;
-      return;
-    }
-
-    rx = lerp(rx, mx, 0.12);
-    ry = lerp(ry, my, 0.12);
-    ring.style.left = rx + 'px';
-    ring.style.top  = ry + 'px';
-    rafId = requestAnimationFrame(animRing);
-  }
-
-  // Hover state on interactive elements
-  var hoverSel = 'a, button, [role="button"], input, textarea, select, label';
-  document.querySelectorAll(hoverSel).forEach(function (el) {
-    el.addEventListener('mouseenter', function () { ring.classList.add('is-hovering'); });
-    el.addEventListener('mouseleave', function () { ring.classList.remove('is-hovering'); });
-  });
-
-  document.addEventListener('mouseleave', function () {
-    dot.style.opacity = '0';
-    ring.style.opacity = '0';
-  });
-  document.addEventListener('mouseenter', function () {
-    dot.style.opacity = '1';
-    ring.style.opacity = '1';
   });
 }
 
