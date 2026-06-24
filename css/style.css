@@ -736,74 +736,198 @@ ul { list-style: none; }
 /* ================================================================
    GALLERY LANES
    ================================================================ */
-.gallery-section { background: var(--bg); border-top: 1px solid var(--border); }
-
-.gallery-lanes {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.gallery-preview {
+  padding: 4rem 0 2rem;
+  overflow: hidden;
+  background: #0D0D0D;
 }
 
-.gallery-lane {
-  display: flex;
-  gap: 12px;
+.gallery-preview .gallery-lane {
   overflow: hidden;
   padding: 6px 0;
 }
 
-.lane-track {
+.gallery-preview .lane-track {
   display: flex;
   gap: 12px;
   width: max-content;
   animation: scrollLeft 30s linear infinite;
 }
 
-.lane-track.reverse {
-  animation: scrollRight 30s linear infinite;
-}
-
-.gallery-lane:hover .lane-track {
+.gallery-preview .gallery-lane:hover .lane-track {
   animation-play-state: paused;
 }
 
-.gallery-photo-card {
-  flex: 0 0 auto;
-  overflow: hidden;
+.lane-card {
+  flex-shrink: 0;
   border-radius: 10px;
-  border: 2px solid transparent;
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  overflow: hidden;
+  position: relative;
 }
 
-.gallery-photo-card img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.gallery-photo-card.landscape {
+.lane-card.landscape {
   width: 280px;
   height: 180px;
 }
 
-.gallery-photo-card.portrait {
-  width: 160px;
-  height: 240px;
+.lane-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
-.gallery-photo-card:hover {
+.lane-card:hover img {
   transform: scale(1.05);
-  border-color: var(--accent);
 }
 
-.gallery-photo-card-tall {
-  width: 360px;
-  height: 240px;
+.lane-card:hover {
+  outline: 2px solid #FF3CAC;
+  outline-offset: -2px;
 }
 
-.gallery-photo-card-tall-portrait {
-  width: 220px;
-  height: 320px;
+.gallery-preview-footer {
+  text-align: right;
+  padding: 1rem 2rem 0;
+}
+
+.view-all-link {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: #FF3CAC;
+  text-decoration: none;
+  letter-spacing: 1px;
+}
+
+.view-all-link:hover {
+  text-decoration: underline;
+}
+
+.gallery-full {
+  padding: 0;
+  background: #0D0D0D;
+  overflow: hidden;
+}
+
+.gallery-header {
+  text-align: center;
+  padding: 4rem 2rem 2rem;
+}
+
+.gallery-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  color: #FFFFFF;
+  letter-spacing: 4px;
+  margin: 0 0 0.5rem;
+}
+
+.gallery-sub {
+  font-family: 'DM Sans', sans-serif;
+  color: #AAAAAA;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  margin: 0 0 2rem;
+}
+
+.gallery-filters {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.filter-btn {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 50px;
+  border: 1px solid #2A2A2A;
+  background: transparent;
+  color: #AAAAAA;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 1px;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: linear-gradient(135deg,#FF3CAC,#784BA0);
+  border-color: transparent;
+  color: #fff;
+}
+
+.glane {
+  overflow: hidden;
+  padding: 6px 0;
+  position: relative;
+}
+
+.glane-track {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  animation: scrollLeft 30s linear infinite;
+}
+
+.glane-track.reverse {
+  animation: scrollRight 30s linear infinite;
+}
+
+.glane:hover .glane-track {
+  animation-play-state: paused;
+}
+
+.glane-card {
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.glane-card.landscape {
+  width: 320px;
+  height: 200px;
+}
+
+.glane-card.portrait {
+  width: 200px;
+  height: 300px;
+}
+
+.glane-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.glane-card:hover img {
+  transform: scale(1.06);
+}
+
+.glane-card:hover {
+  outline: 2px solid #FF3CAC;
+  outline-offset: -2px;
+}
+
+.glane-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(transparent,rgba(0,0,0,0.85));
+  color: #fff;
+  padding: 1.5rem 0.75rem 0.75rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(0.7rem, 2vw, 0.85rem);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glane-card:hover .glane-caption {
+  opacity: 1;
 }
 
 @keyframes scrollLeft {
@@ -816,8 +940,21 @@ ul { list-style: none; }
   to   { transform: translateX(0); }
 }
 
-.gallery-view-all { color: var(--text-secondary); font-size: 13px; text-decoration: none; transition: color 0.2s; }
-.gallery-view-all:hover { color: var(--accent); }
+@media (max-width: 767px) {
+  .glane:nth-child(even) {
+    display: none;
+  }
+
+  .glane-card.landscape {
+    width: 220px;
+    height: 140px;
+  }
+
+  .glane-card.portrait {
+    width: 140px;
+    height: 210px;
+  }
+}
 
 /* ================================================================
    STATS / ODOMETER
@@ -1410,43 +1547,6 @@ h2.words-revealed .word-reveal-inner { transform: translateY(0); }
 }
 .whatsapp-wrap:hover .whatsapp-tooltip { opacity: 1; }
 
-/* ================================================================
-   GALLERY PAGE — GLOBE CAROUSEL
-   ================================================================ */
-.gallery-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-  margin-bottom: 2.5rem;
-}
-.gallery-filter-btn {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text-secondary);
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: all 0.25s;
-}
-.gallery-filter-btn:hover { border-color: var(--accent); color: var(--text); }
-.gallery-filter-btn.active { background: var(--gradient); color: var(--text); border-color: transparent; box-shadow: 0 4px 24px var(--glow-strong); }
-
-.gallery-bottom-cta { text-align: center; padding: 3rem 1rem 1rem; }
-.gallery-bottom-cta a {
-  font-family: 'Bebas Neue', Impact, sans-serif;
-  font-size: clamp(1.5rem, 5vw, 2rem);
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-decoration: none;
-}
 
 /* ================================================================
    ABOUT — STORY GRID
