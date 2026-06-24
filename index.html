@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +11,9 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-  <!-- TOPBAR -->
   <div id="topbar">
     <a href="index.html" class="brand-logo">
-      <span class="brand-name"><span aria-hidden="true">⚡</span> VIVANTE</span>
+      <span class="brand-name">VIVANTE</span>
       <span class="brand-sub">Events</span>
     </a>
     <button id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="fullmenu">
@@ -23,7 +21,6 @@
     </button>
   </div>
 
-  <!-- FULLSCREEN MENU -->
   <nav id="fullmenu" role="dialog" aria-modal="true" aria-label="Site navigation">
     <ul class="fm-nav" role="list">
       <li><a href="index.html" class="fm-active">HOME</a></li>
@@ -46,13 +43,8 @@
     </div>
   </nav>
 
-  <!-- CURSOR -->
-  <div id="cursor-dot" aria-hidden="true"></div>
-  <div id="cursor-ring" aria-hidden="true"></div>
-
   <main>
-    <!-- HERO -->
-    <section class="hero-split">
+    <section class="hero-split hero-section">
       <div class="hero-split-content">
         <h1 class="hero-headline">
           <span class="hero-line">WE</span>
@@ -71,95 +63,169 @@
       </a>
     </section>
 
-    <!-- MARQUEE -->
     <div class="marquee-strip" aria-hidden="true">
-      <div class="marquee-inner">
-        <span class="marquee-text">CORPORATE EVENTS &nbsp;·&nbsp; LIVE SHOWS &nbsp;·&nbsp; CSR &nbsp;·&nbsp; MANPOWER SUPPLY &nbsp;·&nbsp; BANGALORE &nbsp;·&nbsp; VIVANTE EVENTS &nbsp;·&nbsp;&nbsp;</span>
-        <span class="marquee-text">CORPORATE EVENTS &nbsp;·&nbsp; LIVE SHOWS &nbsp;·&nbsp; CSR &nbsp;·&nbsp; MANPOWER SUPPLY &nbsp;·&nbsp; BANGALORE &nbsp;·&nbsp; VIVANTE EVENTS &nbsp;·&nbsp;&nbsp;</span>
+      <div class="marquee-track">
+        <span class="marquee-content">CORPORATE EVENTS · LIVE SHOWS · CSR · MANPOWER SUPPLY · BANGALORE · VIVANTE EVENTS · </span>
+        <span class="marquee-content" aria-hidden="true">CORPORATE EVENTS · LIVE SHOWS · CSR · MANPOWER SUPPLY · BANGALORE · VIVANTE EVENTS · </span>
       </div>
     </div>
 
-    <!-- SERVICES -->
     <section id="services" class="services-section">
-      <div class="container-main">
+      <div class="services-heading container-main">
         <h2 class="section-title text-center mb-2 reveal">WHAT WE DO</h2>
-        <p class="caption text-secondary text-center mb-10 reveal">Experiences That Move People</p>
+        <p class="caption text-secondary text-center reveal">Experiences That Move People</p>
+      </div>
 
-        <div class="services-grid">
-          <article class="svc-card reveal">
-            <svg class="svc-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/></svg>
+      <div class="services-container">
+        <article class="service-panel">
+          <div class="service-panel-media">
+            <img class="service-panel-image" src="https://picsum.photos/seed/stage/900/900" alt="Live entertainment stage production" width="900" height="900" loading="lazy">
+          </div>
+          <div class="service-panel-content reveal">
             <h3 class="card-title">Live Entertainment</h3>
-            <p class="body-text text-sm flex-grow">Concerts, artists &amp; stage productions that electrify every crowd.</p>
-            <a href="services.html" class="svc-link">Learn More →</a>
-          </article>
+            <p class="body-text">Concerts, artist bookings, and stage productions designed to lift the energy in every room and keep every audience engaged.</p>
+            <a href="services.html" class="btn-secondary inline-flex">Learn More</a>
+          </div>
+        </article>
 
-          <article class="svc-card reveal">
-            <svg class="svc-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+        <article class="service-panel">
+          <div class="service-panel-media">
+            <img class="service-panel-image" src="https://picsum.photos/seed/corporate/900/900" alt="Corporate event production setup" width="900" height="900" loading="lazy">
+          </div>
+          <div class="service-panel-content reveal">
             <h3 class="card-title">Corporate Events</h3>
-            <p class="body-text text-sm flex-grow">Launches, conferences &amp; brand activations with premium execution.</p>
-            <a href="services.html" class="svc-link">Learn More →</a>
-          </article>
+            <p class="body-text">Launches, conferences, annual meets, and brand activations delivered with polished execution and premium event flow.</p>
+            <a href="services.html" class="btn-secondary inline-flex">Learn More</a>
+          </div>
+        </article>
 
-          <article class="svc-card reveal">
-            <svg class="svc-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        <article class="service-panel">
+          <div class="service-panel-media">
+            <img class="service-panel-image" src="https://picsum.photos/seed/csr/900/900" alt="CSR event with community engagement" width="900" height="900" loading="lazy">
+          </div>
+          <div class="service-panel-content reveal">
             <h3 class="card-title">CSR Events</h3>
-            <p class="body-text text-sm flex-grow">Purpose-driven experiences that connect brands with communities.</p>
-            <a href="services.html" class="svc-link">Learn More →</a>
-          </article>
+            <p class="body-text">Purpose-driven programs that connect brands, communities, and causes through meaningful, carefully managed event experiences.</p>
+            <a href="services.html" class="btn-secondary inline-flex">Learn More</a>
+          </div>
+        </article>
 
-          <article class="svc-card reveal">
-            <svg class="svc-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-            <h3 class="card-title">Manpower &amp; More</h3>
-            <p class="body-text text-sm flex-grow">Crew, staffing &amp; on-ground ops for seamless event delivery.</p>
-            <a href="services.html" class="svc-link">Learn More →</a>
-          </article>
-        </div>
+        <article class="service-panel">
+          <div class="service-panel-media">
+            <img class="service-panel-image" src="https://picsum.photos/seed/crew/900/900" alt="Event crew and manpower support" width="900" height="900" loading="lazy">
+          </div>
+          <div class="service-panel-content reveal">
+            <h3 class="card-title">Manpower Supply</h3>
+            <p class="body-text">Trained crew, staffing, and on-ground coordination that keep logistics smooth from setup to showtime and final wrap.</p>
+            <a href="services.html" class="btn-secondary inline-flex">Learn More</a>
+          </div>
+        </article>
       </div>
     </section>
 
-    <!-- GALLERY STRIP -->
     <section id="gallery" class="gallery-section section-pad">
       <div class="container-main">
         <h2 class="section-title mb-2 reveal">MOMENTS WE'VE CREATED</h2>
-        <p class="caption text-secondary mb-8 reveal">Swipe to explore →</p>
+        <p class="caption text-secondary mb-8 reveal">A continuous look at our work</p>
 
-        <div class="gallery-scroll reveal mb-6" role="region" aria-label="Event photo gallery">
-          <figure class="gallery-item-inline">
-            <div class="gallery-card">
-              <img src="https://picsum.photos/seed/concert/300/200" alt="Live concert event" width="300" height="200" loading="lazy">
-              <div class="gallery-caption-slide"><span>Live Concert</span></div>
+        <div class="gallery-lanes reveal" role="region" aria-label="Event photo gallery">
+          <div class="gallery-lane">
+            <div class="lane-track">
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/concert/280/180" alt="Concert moment" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/stage/280/180" alt="Stage setup" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/corporate/280/180" alt="Corporate event" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/event/280/180" alt="Event crowd" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/festival/280/180" alt="Festival lights" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/splash/280/180" alt="Show splash moment" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/concert/280/180" alt="Concert moment" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/stage/280/180" alt="Stage setup" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/corporate/280/180" alt="Corporate event" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/event/280/180" alt="Event crowd" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/festival/280/180" alt="Festival lights" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/splash/280/180" alt="Show splash moment" width="280" height="180" loading="lazy"></figure>
             </div>
-          </figure>
-          <figure class="gallery-item-inline">
-            <div class="gallery-card">
-              <img src="https://picsum.photos/seed/party/300/200" alt="Party celebration" width="300" height="200" loading="lazy">
-              <div class="gallery-caption-slide"><span>Celebration</span></div>
+          </div>
+
+          <div class="gallery-lane">
+            <div class="lane-track reverse">
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist1/160/240" alt="Artist portrait" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/celeb1/160/240" alt="Celebrity moment" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/portrait1/160/240" alt="Portrait event shot" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist2/160/240" alt="Artist meet and greet" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/team1/160/240" alt="Team moment" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/person1/160/240" alt="Guest portrait" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist1/160/240" alt="Artist portrait" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/celeb1/160/240" alt="Celebrity moment" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/portrait1/160/240" alt="Portrait event shot" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist2/160/240" alt="Artist meet and greet" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/team1/160/240" alt="Team moment" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/person1/160/240" alt="Guest portrait" width="160" height="240" loading="lazy"></figure>
             </div>
-          </figure>
-          <figure class="gallery-item-inline">
-            <div class="gallery-card">
-              <img src="https://picsum.photos/seed/corporate/300/200" alt="Corporate event" width="300" height="200" loading="lazy">
-              <div class="gallery-caption-slide"><span>Corporate Event</span></div>
+          </div>
+
+          <div class="gallery-lane">
+            <div class="lane-track">
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/crowd1/280/180" alt="Crowd energy" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/lights/280/180" alt="Event lighting" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/conference/280/180" alt="Conference stage" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/backstage/280/180" alt="Backstage preparation" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/crowd1/280/180" alt="Crowd energy" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/lights/280/180" alt="Event lighting" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/conference/280/180" alt="Conference stage" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/backstage/280/180" alt="Backstage preparation" width="280" height="180" loading="lazy"></figure>
             </div>
-          </figure>
-          <figure class="gallery-item-inline">
-            <div class="gallery-card">
-              <img src="https://picsum.photos/seed/festival/300/200" alt="Festival event" width="300" height="200" loading="lazy">
-              <div class="gallery-caption-slide"><span>Festival</span></div>
+          </div>
+
+          <div class="gallery-lane">
+            <div class="lane-track reverse">
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist1b/160/240" alt="Artist feature" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/celeb1b/160/240" alt="Featured guest" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/portrait1b/160/240" alt="Portrait highlight" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist2b/160/240" alt="Stage artist" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/team1b/160/240" alt="Crew portrait" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/person1b/160/240" alt="Audience portrait" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist1b/160/240" alt="Artist feature" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/celeb1b/160/240" alt="Featured guest" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/portrait1b/160/240" alt="Portrait highlight" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist2b/160/240" alt="Stage artist" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/team1b/160/240" alt="Crew portrait" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/person1b/160/240" alt="Audience portrait" width="160" height="240" loading="lazy"></figure>
             </div>
-          </figure>
-          <figure class="gallery-item-inline">
-            <div class="gallery-card">
-              <img src="https://picsum.photos/seed/team/300/200" alt="Team event" width="300" height="200" loading="lazy">
-              <div class="gallery-caption-slide"><span>Team Event</span></div>
+          </div>
+
+          <div class="gallery-lane">
+            <div class="lane-track">
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/concert2/280/180" alt="Concert highlight" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/stage2/280/180" alt="Stage highlight" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/corporate2/280/180" alt="Corporate highlight" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/event2/280/180" alt="Event production" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/festival2/280/180" alt="Festival scene" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/splash2/280/180" alt="Show moment" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/concert2/280/180" alt="Concert highlight" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/stage2/280/180" alt="Stage highlight" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/corporate2/280/180" alt="Corporate highlight" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/event2/280/180" alt="Event production" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/festival2/280/180" alt="Festival scene" width="280" height="180" loading="lazy"></figure>
+              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/splash2/280/180" alt="Show moment" width="280" height="180" loading="lazy"></figure>
             </div>
-          </figure>
-          <figure class="gallery-item-inline">
-            <div class="gallery-card">
-              <img src="https://picsum.photos/seed/celebration/300/200" alt="CSR initiative" width="300" height="200" loading="lazy">
-              <div class="gallery-caption-slide"><span>CSR Initiative</span></div>
+          </div>
+
+          <div class="gallery-lane">
+            <div class="lane-track reverse">
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist1c/160/240" alt="Artist spotlight" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/celeb1c/160/240" alt="Guest spotlight" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/portrait1c/160/240" alt="Portrait scene" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist2c/160/240" alt="Performer close-up" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/team1c/160/240" alt="Team feature" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/person1c/160/240" alt="Audience feature" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist1c/160/240" alt="Artist spotlight" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/celeb1c/160/240" alt="Guest spotlight" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/portrait1c/160/240" alt="Portrait scene" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist2c/160/240" alt="Performer close-up" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/team1c/160/240" alt="Team feature" width="160" height="240" loading="lazy"></figure>
+              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/person1c/160/240" alt="Audience feature" width="160" height="240" loading="lazy"></figure>
             </div>
-          </figure>
+          </div>
         </div>
 
         <p class="reveal text-right">
@@ -168,32 +234,32 @@
       </div>
     </section>
 
-    <!-- STATS ODOMETER -->
-    <section class="container-main pb-4">
-      <div class="stats-panel reveal" id="stats-panel">
-        <div class="stats-grid">
-          <div>
-            <div class="odometer-stat" id="odo-events" data-target="50" data-suffix="+"></div>
-            <p class="caption text-secondary mt-2">Events</p>
-          </div>
-          <div>
-            <div class="odometer-stat" id="odo-cities" data-target="3" data-suffix=""></div>
-            <p class="caption text-secondary mt-2">Cities</p>
-          </div>
-          <div>
-            <div class="odometer-stat" id="odo-crew" data-target="200" data-suffix="+"></div>
-            <p class="caption text-secondary mt-2">Crew</p>
-          </div>
-          <div>
-            <div class="odometer-stat" id="odo-guests" data-target="1000" data-suffix="+"></div>
-            <p class="caption text-secondary mt-2">Guests</p>
+    <section class="stats-section">
+      <div class="container-main">
+        <div class="stats-panel reveal" id="stats-panel">
+          <div class="stats-grid">
+            <div>
+              <div class="odometer-stat" id="odo-events" data-target="50" data-suffix="+"></div>
+              <p class="caption text-secondary mt-2">Events</p>
+            </div>
+            <div>
+              <div class="odometer-stat" id="odo-cities" data-target="3" data-suffix=""></div>
+              <p class="caption text-secondary mt-2">Cities</p>
+            </div>
+            <div>
+              <div class="odometer-stat" id="odo-crew" data-target="200" data-suffix="+"></div>
+              <p class="caption text-secondary mt-2">Crew</p>
+            </div>
+            <div>
+              <div class="odometer-stat" id="odo-guests" data-target="1000" data-suffix="+"></div>
+              <p class="caption text-secondary mt-2">Guests</p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
-    <section class="testimonials-panel section-pad">
+    <section class="testimonials-section testimonials-panel">
       <div class="container-main">
         <h2 class="section-title text-center mb-10 reveal">WHAT CLIENTS SAY</h2>
         <div class="testimonials-grid">
@@ -206,7 +272,7 @@
               </div>
             </div>
             <div class="stars" aria-label="5 star rating">★★★★★</div>
-            <p class="body-text text-sm">"Vivante turned our product launch into a full-blown experience. The energy, the production quality — our guests are still talking about it months later."</p>
+            <p class="body-text text-sm">"Vivante turned our product launch into a full experience. The energy and production quality still come up in conversations months later."</p>
           </article>
           <article class="testimonial-card reveal">
             <div class="testimonial-top">
@@ -217,7 +283,7 @@
               </div>
             </div>
             <div class="stars" aria-label="5 star rating">★★★★★</div>
-            <p class="body-text text-sm">"They understood our mission instantly and delivered a community event that felt authentic and impactful. Professional, passionate, and genuinely caring."</p>
+            <p class="body-text text-sm">"They understood our mission quickly and delivered a community event that felt authentic, thoughtful, and very well managed."</p>
           </article>
           <article class="testimonial-card reveal">
             <div class="testimonial-top">
@@ -228,14 +294,13 @@
               </div>
             </div>
             <div class="stars" aria-label="5 star rating">★★★★★</div>
-            <p class="body-text text-sm">"Our anniversary party felt like a mini festival — incredible décor, seamless coordination, and a vibe that had everyone on their feet. Worth every rupee."</p>
+            <p class="body-text text-sm">"Everything felt seamless from decor to coordination. The evening had a strong atmosphere without ever feeling overdone."</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- WHY VIVANTE -->
-    <section class="section-pad why-section">
+    <section class="why-section">
       <div class="container-main">
         <h2 class="section-title text-center mb-10 reveal">WHY VIVANTE</h2>
         <div class="why-grid">
@@ -244,43 +309,41 @@
               <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/></svg>
             </div>
             <h3 class="card-title text-accent mb-3">On-Ground Experience</h3>
-            <p class="body-text text-sm">200+ trained crew members who've executed events across Bangalore, Mumbai &amp; Hyderabad. We know venues, vendors &amp; crowds.</p>
+            <p class="body-text text-sm">200+ trained crew members supporting events across Bangalore, Mumbai, and Hyderabad with practical venue and crowd knowledge.</p>
           </article>
           <article class="reveal">
             <div class="why-icon-wrap">
               <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
             </div>
             <h3 class="card-title text-accent mb-3">Tech-Driven Operations</h3>
-            <p class="body-text text-sm">Real-time coordination, digital check-ins, AV integration &amp; live production tools that keep your event running like clockwork.</p>
+            <p class="body-text text-sm">Real-time coordination, digital check-ins, and AV integration that keep each production moving cleanly from cue to cue.</p>
           </article>
           <article class="reveal">
             <div class="why-icon-wrap">
               <svg class="icon-sm" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
             <h3 class="card-title text-accent mb-3">End-to-End Execution</h3>
-            <p class="body-text text-sm">From first brief to final applause — concept, planning, production, manpower &amp; teardown. One team, zero stress.</p>
+            <p class="body-text text-sm">Concept, planning, production, manpower, and wrap-up handled by one team so the event stays clear, coordinated, and low-stress.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-gradient section-pad">
+    <section class="cta-section cta-gradient">
       <div class="container-main max-w-3xl text-center reveal">
         <h2 class="section-title text-white mb-4">READY TO CREATE SOMETHING EPIC?</h2>
         <p class="body-text text-white mb-8" style="color: rgba(255,255,255,0.9);">Let's plan your next event together</p>
-        <a href="contact.html" class="btn-secondary inline-flex">Start Planning →</a>
+        <a href="contact.html" class="btn-secondary inline-flex">Start Planning</a>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container-main">
       <div class="footer-grid">
         <div>
           <a href="index.html" class="brand-logo inline-block mb-3">
-            <span class="brand-name"><span aria-hidden="true">⚡</span> VIVANTE</span>
+            <span class="brand-name">VIVANTE</span>
             <span class="brand-sub">Events</span>
           </a>
           <p class="body-text text-sm">Experiences That Move People.</p>
@@ -326,7 +389,6 @@
     </div>
   </footer>
 
-  <!-- WHATSAPP -->
   <div class="whatsapp-wrap">
     <span class="whatsapp-tooltip">Chat with us!</span>
     <span class="whatsapp-pulse" aria-hidden="true"></span>
