@@ -9,6 +9,97 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <style>
+    .hero-scroll {
+      display: none !important;
+    }
+
+    .services-section {
+      min-height: auto !important;
+      height: auto !important;
+      margin-top: 0 !important;
+      padding: 4rem 2rem !important;
+      display: block !important;
+      overflow: visible !important;
+      background: transparent !important;
+    }
+
+    .services-heading {
+      margin-bottom: 1.5rem !important;
+    }
+
+    .services-container {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: 1rem !important;
+      max-width: 980px !important;
+      margin: 0 auto !important;
+      scroll-snap-type: none !important;
+    }
+
+    .service-panel {
+      height: auto !important;
+      min-height: auto !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+      padding: 1.5rem !important;
+      background: #1A1A1A !important;
+      border: 1px solid #2A2A2A !important;
+      border-radius: 12px !important;
+      overflow: hidden !important;
+      box-shadow: none !important;
+      scroll-snap-align: none !important;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease !important;
+    }
+
+    .service-panel:hover {
+      transform: translateY(-4px) !important;
+      border-color: #FF3CAC !important;
+      box-shadow: 0 10px 30px rgba(255, 60, 172, 0.16) !important;
+    }
+
+    .service-panel-media,
+    .service-panel-image {
+      display: none !important;
+    }
+
+    .service-panel-content {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.6rem !important;
+      padding: 0 !important;
+    }
+
+    .service-panel-content .card-title {
+      font-size: 1.1rem !important;
+      margin: 0 !important;
+    }
+
+    .service-panel-content .body-text {
+      font-size: 0.95rem !important;
+      line-height: 1.6 !important;
+      margin: 0 !important;
+    }
+
+    .service-panel-content .btn-secondary {
+      margin-top: 0.25rem !important;
+      padding: 0.7rem 1rem !important;
+      font-size: 0.8rem !important;
+      letter-spacing: 1px !important;
+    }
+
+    @media (min-width: 1024px) {
+      .services-section {
+        padding: 4rem 2rem !important;
+      }
+
+      .services-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 1.25rem !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <div id="topbar">
@@ -57,10 +148,6 @@
         </div>
       </div>
       <div class="hero-split-visual" role="img" aria-label="Live event stage"></div>
-      <a href="#services" class="hero-scroll" aria-label="Scroll down">
-        <span class="hero-scroll-text">Scroll</span>
-        <span class="hero-scroll-line" aria-hidden="true"></span>
-      </a>
     </section>
 
     <div class="marquee-strip" aria-hidden="true">
@@ -78,159 +165,96 @@
 
       <div class="services-container">
         <article class="service-panel">
-          <div class="service-panel-media">
-            <img class="service-panel-image" src="https://picsum.photos/seed/stage/900/900" alt="Live entertainment stage production" width="900" height="900" loading="lazy">
-          </div>
           <div class="service-panel-content reveal">
-            <h3 class="card-title">Live Entertainment</h3>
-            <p class="body-text">Concerts, artist bookings, and stage productions designed to lift the energy in every room and keep every audience engaged.</p>
+            <h3 class="card-title">01 · Live Entertainment</h3>
+            <p class="body-text">Concerts, artist bookings, and stage productions designed to uplift energy and keep every audience engaged.</p>
             <a href="services.html" class="btn-secondary inline-flex">Learn More</a>
           </div>
         </article>
 
         <article class="service-panel">
-          <div class="service-panel-media">
-            <img class="service-panel-image" src="https://picsum.photos/seed/corporate/900/900" alt="Corporate event production setup" width="900" height="900" loading="lazy">
-          </div>
           <div class="service-panel-content reveal">
-            <h3 class="card-title">Corporate Events</h3>
-            <p class="body-text">Launches, conferences, annual meets, and brand activations delivered with polished execution and premium event flow.</p>
+            <h3 class="card-title">02 · Corporate Events</h3>
+            <p class="body-text">Launches, conferences, annual meets, and brand activations delivered with polished execution and premium flow.</p>
             <a href="services.html" class="btn-secondary inline-flex">Learn More</a>
           </div>
         </article>
 
         <article class="service-panel">
-          <div class="service-panel-media">
-            <img class="service-panel-image" src="https://picsum.photos/seed/csr/900/900" alt="CSR event with community engagement" width="900" height="900" loading="lazy">
-          </div>
           <div class="service-panel-content reveal">
-            <h3 class="card-title">CSR Events</h3>
-            <p class="body-text">Purpose-driven programs that connect brands, communities, and causes through meaningful, carefully managed event experiences.</p>
+            <h3 class="card-title">03 · CSR Events</h3>
+            <p class="body-text">Purpose-driven programs that connect brands, communities, and causes through meaningful event experiences.</p>
             <a href="services.html" class="btn-secondary inline-flex">Learn More</a>
           </div>
         </article>
 
         <article class="service-panel">
-          <div class="service-panel-media">
-            <img class="service-panel-image" src="https://picsum.photos/seed/crew/900/900" alt="Event crew and manpower support" width="900" height="900" loading="lazy">
-          </div>
           <div class="service-panel-content reveal">
-            <h3 class="card-title">Manpower Supply</h3>
-            <p class="body-text">Trained crew, staffing, and on-ground coordination that keep logistics smooth from setup to showtime and final wrap.</p>
+            <h3 class="card-title">04 · Manpower Supply</h3>
+            <p class="body-text">Trained crew, staffing, and on-ground coordination that keep logistics smooth from setup to showtime.</p>
             <a href="services.html" class="btn-secondary inline-flex">Learn More</a>
           </div>
         </article>
       </div>
     </section>
 
-    <section id="gallery" class="gallery-section section-pad">
-      <div class="container-main">
-        <h2 class="section-title mb-2 reveal">MOMENTS WE'VE CREATED</h2>
-        <p class="caption text-secondary mb-8 reveal">A continuous look at our work</p>
-
-        <div class="gallery-lanes reveal" role="region" aria-label="Event photo gallery">
-          <div class="gallery-lane">
-            <div class="lane-track">
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/concert/280/180" alt="Concert moment" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/stage/280/180" alt="Stage setup" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/corporate/280/180" alt="Corporate event" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/event/280/180" alt="Event crowd" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/festival/280/180" alt="Festival lights" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/splash/280/180" alt="Show splash moment" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/concert/280/180" alt="Concert moment" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/stage/280/180" alt="Stage setup" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/corporate/280/180" alt="Corporate event" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/event/280/180" alt="Event crowd" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/festival/280/180" alt="Festival lights" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/splash/280/180" alt="Show splash moment" width="280" height="180" loading="lazy"></figure>
-            </div>
+    <section id="gallery" class="gallery-preview">
+      <div class="gallery-lane">
+        <div class="lane-track" id="index-lane">
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/concert1/280/180" alt="Live Concert" loading="lazy">
           </div>
-
-          <div class="gallery-lane">
-            <div class="lane-track reverse">
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist1/160/240" alt="Artist portrait" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/celeb1/160/240" alt="Celebrity moment" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/portrait1/160/240" alt="Portrait event shot" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist2/160/240" alt="Artist meet and greet" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/team1/160/240" alt="Team moment" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/person1/160/240" alt="Guest portrait" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist1/160/240" alt="Artist portrait" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/celeb1/160/240" alt="Celebrity moment" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/portrait1/160/240" alt="Portrait event shot" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist2/160/240" alt="Artist meet and greet" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/team1/160/240" alt="Team moment" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/person1/160/240" alt="Guest portrait" width="160" height="240" loading="lazy"></figure>
-            </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/stage1/280/180" alt="Stage Show" loading="lazy">
           </div>
-
-          <div class="gallery-lane">
-            <div class="lane-track">
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/crowd1/280/180" alt="Crowd energy" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/lights/280/180" alt="Event lighting" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/conference/280/180" alt="Conference stage" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/backstage/280/180" alt="Backstage preparation" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/crowd1/280/180" alt="Crowd energy" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/lights/280/180" alt="Event lighting" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/conference/280/180" alt="Conference stage" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/backstage/280/180" alt="Backstage preparation" width="280" height="180" loading="lazy"></figure>
-            </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/corporate1/280/180" alt="Corporate Event" loading="lazy">
           </div>
-
-          <div class="gallery-lane">
-            <div class="lane-track reverse">
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist1b/160/240" alt="Artist feature" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/celeb1b/160/240" alt="Featured guest" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/portrait1b/160/240" alt="Portrait highlight" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist2b/160/240" alt="Stage artist" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/team1b/160/240" alt="Crew portrait" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/person1b/160/240" alt="Audience portrait" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist1b/160/240" alt="Artist feature" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/celeb1b/160/240" alt="Featured guest" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/portrait1b/160/240" alt="Portrait highlight" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist2b/160/240" alt="Stage artist" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/team1b/160/240" alt="Crew portrait" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/person1b/160/240" alt="Audience portrait" width="160" height="240" loading="lazy"></figure>
-            </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/event1/280/180" alt="Event" loading="lazy">
           </div>
-
-          <div class="gallery-lane">
-            <div class="lane-track">
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/concert2/280/180" alt="Concert highlight" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/stage2/280/180" alt="Stage highlight" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/corporate2/280/180" alt="Corporate highlight" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/event2/280/180" alt="Event production" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/festival2/280/180" alt="Festival scene" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/splash2/280/180" alt="Show moment" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/concert2/280/180" alt="Concert highlight" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/stage2/280/180" alt="Stage highlight" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/corporate2/280/180" alt="Corporate highlight" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/event2/280/180" alt="Event production" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/festival2/280/180" alt="Festival scene" width="280" height="180" loading="lazy"></figure>
-              <figure class="gallery-photo-card landscape"><img src="https://picsum.photos/seed/splash2/280/180" alt="Show moment" width="280" height="180" loading="lazy"></figure>
-            </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/crowd1/280/180" alt="Crowd" loading="lazy">
           </div>
-
-          <div class="gallery-lane">
-            <div class="lane-track reverse">
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist1c/160/240" alt="Artist spotlight" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/celeb1c/160/240" alt="Guest spotlight" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/portrait1c/160/240" alt="Portrait scene" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist2c/160/240" alt="Performer close-up" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/team1c/160/240" alt="Team feature" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/person1c/160/240" alt="Audience feature" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist1c/160/240" alt="Artist spotlight" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/celeb1c/160/240" alt="Guest spotlight" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/portrait1c/160/240" alt="Portrait scene" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/artist2c/160/240" alt="Performer close-up" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/team1c/160/240" alt="Team feature" width="160" height="240" loading="lazy"></figure>
-              <figure class="gallery-photo-card portrait"><img src="https://picsum.photos/seed/person1c/160/240" alt="Audience feature" width="160" height="240" loading="lazy"></figure>
-            </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/lights1/280/180" alt="Lights" loading="lazy">
+          </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/festival1/280/180" alt="Festival" loading="lazy">
+          </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/splash1/280/180" alt="Social Event" loading="lazy">
+          </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/concert1/280/180" alt="Live Concert" loading="lazy">
+          </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/stage1/280/180" alt="Stage Show" loading="lazy">
+          </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/corporate1/280/180" alt="Corporate Event" loading="lazy">
+          </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/event1/280/180" alt="Event" loading="lazy">
+          </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/crowd1/280/180" alt="Crowd" loading="lazy">
+          </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/lights1/280/180" alt="Lights" loading="lazy">
+          </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/festival1/280/180" alt="Festival" loading="lazy">
+          </div>
+          <div class="lane-card landscape">
+            <img src="https://picsum.photos/seed/splash1/280/180" alt="Social Event" loading="lazy">
           </div>
         </div>
-
-        <p class="reveal text-right">
-          <a href="gallery.html" class="gallery-view-all">View All Moments →</a>
-        </p>
+      </div>
+      <div class="gallery-preview-footer">
+        <a href="gallery.html" class="view-all-link">
+          View All Moments →
+        </a>
       </div>
     </section>
 
